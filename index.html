@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnum Lottery Ticket Head Office</title>
+  <style>
+    :root {
+      --primary-color: #76b01e;
+      --primary-dark: #5c8b16;
+      --bg-color: #f4f6f8;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Embedded Google Document Frame */
+    .doc-iframe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 750px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .doc-iframe-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Ticket Purchase Card Styling at Bottom */
+    .purchase-card {
+      background: #ffffff;
+      border: 2px solid #76b01e;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .amount-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-amount {
+      background: #ffffff;
+      border: 1px solid #76b01e;
+      color: #76b01e;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-amount:hover, .btn-amount.active {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    .btn-confirm {
+      width: 100%;
+      background: var(--primary-color);
+      color: #ffffff;
+      padding: 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn-confirm:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Modal / Popup Styling */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 20px 0;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      width: 90%;
+      max-width: 480px;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      margin: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .bank-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      background: #fff;
+    }
+
+    .bank-details-box {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      text-align: left;
+      border: 1px solid #e0e0e0;
+    }
+
+    .qr-code {
+      width: 180px;
+      height: 180px;
+      margin: 10px auto;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #ffffff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .doc-iframe-wrapper {
+        height: 550px;
+      }
+      .amount-buttons {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Embedded Google Document -->
+    <div class="doc-iframe-wrapper">
+      <iframe src="https://docs.google.com/document/d/e/2PACX-1vRCLZYMIumM4vV3g8mpyxnw6dXC3_beE5Vkwbzjl9-CcTE130_yotr6mkLz4L9uNmO7qSKchQISLxcu/pub?embedded=true"></iframe>
+    </div>
+
+    <!-- Buy Ticket Form at the Bottom -->
+    <div class="purchase-card">
+      <h2 style="margin-bottom: 15px; font-size: 22px; text-align: center; color: #2c3e50;">BUY TICKET</h2>
+      
+      <div class="form-group">
+        <label for="ticketNum">Ticket Number:</label>
+        <input type="text" id="ticketNum" class="form-input" placeholder="Enter Ticket / 4D Number">
+      </div>
+
+      <div class="form-group">
+        <label for="amountInput">Amount (Min 100.00 RM / Max 5 000.00 RM):</label>
+        <input type="number" id="amountInput" class="form-input" value="100.00">
+      </div>
+
+      <div class="amount-buttons">
+        <button class="btn-amount" onclick="setAmount(100)">100</button>
+        <button class="btn-amount" onclick="setAmount(200)">200</button>
+        <button class="btn-amount" onclick="setAmount(500)">500</button>
+        <button class="btn-amount" onclick="setAmount(1000)">1 000</button>
+        <button class="btn-amount" onclick="setAmount(5000)">5 000</button>
+      </div>
+
+      <button class="btn-confirm" onclick="openPaymentModal()">CONFIRM & PURCHASE</button>
+    </div>
+
+  </div>
+
+  <!-- Payment Modal Popup -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 style="margin-bottom: 10px; color: #2c3e50;">Select Payment Account</h3>
+      <p style="font-size: 13px; color: #555; margin-bottom: 10px;">Choose a payment method below to transfer amount & scan QR:</p>
+
+      <!-- Bank Selector Dropdown -->
+      <select id="bankSelect" class="bank-select" onchange="updateBankDetails()">
+        <option value="maybank">Maybank (SOHEL)</option>
+        <option value="cimb">CIMB (HABIBAH WAFIYYAH ENTERPRISE)</option>
+        <option value="tng">TOUCH 'N GO (SOHEL)</option>
+      </select>
+
+      <!-- Dynamic Bank Info Box -->
+      <div class="bank-details-box" id="bankInfoBox">
+        <p><strong>Bank:</strong> Maybank</p>
+        <p><strong>Account Name:</strong> SOHEL</p>
+        <p><strong>Account Number:</strong> 0128 8420 3899</p>
+        <p><strong>Total Amount:</strong> <span id="modalAmount" style="color: #c0392b; font-weight: bold;">100.00</span> RM</p>
+      </div>
+
+      <!-- Dynamic QR Code Display -->
+      <div>
+        <img id="bankQrCode" src="https://i.postimg.cc/tgy6zRqX/RRVR.jpg" alt="Payment QR Code" class="qr-code">
+      </div>
+
+      <p style="font-size: 12px; color: #666; margin-top: 5px;">Transfer successful hole confirm screenshot direct WhatsApp-e pathan.</p>
+
+      <button class="btn-whatsapp" onclick="sendToWhatsApp()">Send Confirmation to WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    const bankData = {
+      maybank: {
+        name: "Maybank",
+        holder: "SOHEL",
+        number: "0128 8420 3899",
+        qr: "https://i.postimg.cc/tgy6zRqX/RRVR.jpg"
+      },
+      cimb: {
+        name: "CIMB",
+        holder: "HABIBAH WAFIYYAH ENTERPRISE",
+        number: "8605918678",
+        qr: "https://i.ibb.co/n8B45V7z/waffle.jpg"
+      },
+      tng: {
+        name: "TOUCH 'N GO",
+        holder: "SOHEL",
+        number: "9988001079280",
+        qr: "https://i.ibb.co/4nLNgN5r/touch-n-go.jpg"
+      }
+    };
+
+    function setAmount(val) {
+      document.getElementById('amountInput').value = val.toFixed(2);
+    }
+
+    function openPaymentModal() {
+      const ticket = document.getElementById('ticketNum').value;
+      const amount = document.getElementById('amountInput').value;
+
+      if (!ticket) {
+        alert('Please enter a Ticket Number first!');
+        return;
+      }
+      if (!amount || amount < 100) {
+        alert('Minimum amount is 100.00 RM');
+        return;
+      }
+
+      document.getElementById('modalAmount').innerText = amount;
+      updateBankDetails();
+      document.getElementById('paymentModal').style.display = 'flex';
+    }
+
+    function updateBankDetails() {
+      const selectedKey = document.getElementById('bankSelect').value;
+      const bank = bankData[selectedKey];
+      const amount = document.getElementById('amountInput').value;
+
+      const infoBox = document.getElementById('bankInfoBox');
+      infoBox.innerHTML = `
+        <p><strong>Bank:</strong> ${bank.name}</p>
+        <p><strong>Account Name:</strong> ${bank.holder}</p>
+        <p><strong>Account Number:</strong> ${bank.number}</p>
+        <p><strong>Total Amount:</strong> <span style="color: #c0392b; font-weight: bold;">${amount}</span> RM</p>
+      `;
+
+      document.getElementById('bankQrCode').src = bank.qr;
+    }
+
+    function closeModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    function sendToWhatsApp() {
+      const ticket = document.getElementById('ticketNum').value;
+      const amount = document.getElementById('amountInput').value;
+      const selectedKey = document.getElementById('bankSelect').value;
+      const bank = bankData[selectedKey];
+      const phone = "601123240813";
+
+      const message = `Hello, I want to confirm my Magnum Ticket purchase.\n\n*Ticket Number:* ${ticket}\n*Amount:* ${amount} RM\n*Paid Via:* ${bank.name}\n*Account Name:* ${bank.holder}\n*Account Number:* ${bank.number}\n\nI have transferred the amount. Please find my payment screenshot attached.`;
+      
+      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
